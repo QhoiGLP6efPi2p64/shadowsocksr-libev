@@ -209,7 +209,7 @@ server_recv_cb(EV_P_ ev_io *w, int revents)
 
     // SSR beg
     if (server->protocol_plugin) {
-        obfs_class *protocol_plugin = server->protocol_plugin;
+        obfs_class_t *protocol_plugin = server->protocol_plugin;
         if (protocol_plugin->client_pre_encrypt) {
             remote->buf->len = protocol_plugin->client_pre_encrypt(server->protocol, &remote->buf->array, remote->buf->len, &remote->buf->capacity);
         }
@@ -224,7 +224,7 @@ server_recv_cb(EV_P_ ev_io *w, int revents)
     }
 
     if (server->obfs_plugin) {
-        obfs_class *obfs_plugin = server->obfs_plugin;
+        obfs_class_t *obfs_plugin = server->obfs_plugin;
         if (obfs_plugin->client_encode) {
             remote->buf->len = obfs_plugin->client_encode(server->obfs, &remote->buf->array, remote->buf->len, &remote->buf->capacity);
         }
@@ -348,7 +348,7 @@ remote_recv_cb(EV_P_ ev_io *w, int revents)
 
     // SSR beg
     if (server->obfs_plugin) {
-        obfs_class *obfs_plugin = server->obfs_plugin;
+        obfs_class_t *obfs_plugin = server->obfs_plugin;
         if (obfs_plugin->client_decode) {
             int needsendback;
             server->buf->len = obfs_plugin->client_decode(server->obfs, &server->buf->array, server->buf->len, &server->buf->capacity, &needsendback);
@@ -361,7 +361,7 @@ remote_recv_cb(EV_P_ ev_io *w, int revents)
             if (needsendback) {
                 size_t capacity = BUF_SIZE;
                 char *buf = (char*)malloc(capacity);
-                obfs_class *obfs_plugin = server->obfs_plugin;
+                obfs_class_t *obfs_plugin = server->obfs_plugin;
                 if (obfs_plugin->client_encode) {
                     int len = obfs_plugin->client_encode(server->obfs, &buf, 0, &capacity);
                     send(remote->fd, buf, len, 0);
@@ -383,7 +383,7 @@ remote_recv_cb(EV_P_ ev_io *w, int revents)
     }
 
     if (server->protocol_plugin) {
-        obfs_class *protocol_plugin = server->protocol_plugin;
+        obfs_class_t *protocol_plugin = server->protocol_plugin;
         if (protocol_plugin->client_post_decrypt) {
             server->buf->len = protocol_plugin->client_post_decrypt(server->protocol, &server->buf->array, server->buf->len, &server->buf->capacity);
             if ((int)server->buf->len < 0) {
@@ -507,14 +507,14 @@ remote_send_cb(EV_P_ ev_io *w, int revents)
             bfree(abuf);
 
             // SSR beg
-            server_info _server_info;
+            server_info_t _server_info;
             if (server->obfs_plugin) {
                 server->obfs_plugin->get_server_info(server->obfs, &_server_info);
                 _server_info.head_len = get_head_size(remote->buf->array, remote->buf->len, 30);
                 server->obfs_plugin->set_server_info(server->obfs, &_server_info);
             }
             if (server->protocol_plugin) {
-                obfs_class *protocol_plugin = server->protocol_plugin;
+                obfs_class_t *protocol_plugin = server->protocol_plugin;
                 if (protocol_plugin->client_pre_encrypt) {
                     remote->buf->len = protocol_plugin->client_pre_encrypt(server->protocol, &remote->buf->array, remote->buf->len, &remote->buf->capacity);
                 }
@@ -529,7 +529,7 @@ remote_send_cb(EV_P_ ev_io *w, int revents)
             }
 
             if (server->obfs_plugin) {
-                obfs_class *obfs_plugin = server->obfs_plugin;
+                obfs_class_t *obfs_plugin = server->obfs_plugin;
                 if (obfs_plugin->client_encode) {
                     remote->buf->len = obfs_plugin->client_encode(server->obfs, &remote->buf->array, remote->buf->len, &remote->buf->capacity);
                 }

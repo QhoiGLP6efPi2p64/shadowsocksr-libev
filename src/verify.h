@@ -7,10 +7,10 @@
 #ifndef _VERIFY_H
 #define _VERIFY_H
 
-obfs * verify_simple_new_obfs();
-void verify_simple_dispose(obfs *self);
+obfs_t * verify_simple_new_obfs();
+void verify_simple_dispose(obfs_t *self);
 
-int verify_simple_client_pre_encrypt(obfs *self, char **pplaindata, int datalength, size_t* capacity);
-int verify_simple_client_post_decrypt(obfs *self, char **pplaindata, int datalength, size_t* capacity);
+int verify_simple_client_pre_encrypt(obfs_t *self, char **pplaindata, int datalength, size_t* capacity);
+int verify_simple_client_post_decrypt(obfs_t *self, char **pplaindata, int datalength, size_t* capacity);
 
 #endif // _VERIFY_H

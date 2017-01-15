@@ -19,25 +19,25 @@ void * init_data() {
     return malloc(1);
 }
 
-obfs * new_obfs() {
-    obfs * self = (obfs*)malloc(sizeof(obfs));
+obfs_t * new_obfs() {
+    obfs_t * self = (obfs_t *)malloc(sizeof(obfs_t));
     self->l_data = NULL;
     return self;
 }
 
-void set_server_info(obfs *self, server_info *server) {
-    memmove(&self->server, server, sizeof(server_info));
+void set_server_info(obfs_t *self, server_info_t *server) {
+    memmove(&self->server, server, sizeof(server_info_t));
 }
 
-void get_server_info(obfs *self, server_info *server) {
-    memmove(server, &self->server, sizeof(server_info));
+void get_server_info(obfs_t *self, server_info_t *server) {
+    memmove(server, &self->server, sizeof(server_info_t));
 }
 
-void dispose_obfs(obfs *self) {
+void dispose_obfs(obfs_t *self) {
     free(self);
 }
 
-obfs_class * new_obfs_class(char *plugin_name)
+obfs_class_t * new_obfs_class(char *plugin_name)
 {
     if (plugin_name == NULL)
         return NULL;
@@ -48,7 +48,7 @@ obfs_class * new_obfs_class(char *plugin_name)
     init_crc32_table();
     init_shift128plus();
     if (strcmp(plugin_name, "http_simple") == 0) {
-        obfs_class * plugin = (obfs_class*)malloc(sizeof(obfs));
+        obfs_class_t * plugin = (obfs_class_t *)malloc(sizeof(obfs_t));
         plugin->init_data = init_data;
         plugin->new_obfs = http_simple_new_obfs;
         plugin->get_server_info = get_server_info;
@@ -60,7 +60,7 @@ obfs_class * new_obfs_class(char *plugin_name)
 
         return plugin;
     } else if (strcmp(plugin_name, "http_post") == 0) {
-        obfs_class * plugin = (obfs_class*)malloc(sizeof(obfs));
+        obfs_class_t * plugin = (obfs_class_t *)malloc(sizeof(obfs_t));
         plugin->init_data = init_data;
         plugin->new_obfs = http_simple_new_obfs;
         plugin->get_server_info = get_server_info;
@@ -72,7 +72,7 @@ obfs_class * new_obfs_class(char *plugin_name)
 
         return plugin;
     } else if (strcmp(plugin_name, "tls1.2_ticket_auth") == 0) {
-        obfs_class * plugin = (obfs_class*)malloc(sizeof(obfs));
+        obfs_class_t * plugin = (obfs_class_t *)malloc(sizeof(obfs_t));
         plugin->init_data = tls12_ticket_auth_init_data;
         plugin->new_obfs = tls12_ticket_auth_new_obfs;
         plugin->get_server_info = get_server_info;
@@ -84,7 +84,7 @@ obfs_class * new_obfs_class(char *plugin_name)
 
         return plugin;
     } else if (strcmp(plugin_name, "verify_simple") == 0) {
-        obfs_class * plugin = (obfs_class*)malloc(sizeof(obfs));
+        obfs_class_t * plugin = (obfs_class_t *)malloc(sizeof(obfs_t));
         plugin->init_data = init_data;
         plugin->new_obfs = verify_simple_new_obfs;
         plugin->get_server_info = get_server_info;
@@ -98,7 +98,7 @@ obfs_class * new_obfs_class(char *plugin_name)
 
         return plugin;
     } else if (strcmp(plugin_name, "auth_simple") == 0) {
-        obfs_class * plugin = (obfs_class*)malloc(sizeof(obfs));
+        obfs_class_t * plugin = (obfs_class_t *)malloc(sizeof(obfs_t));
         plugin->init_data = auth_simple_init_data;
         plugin->new_obfs = auth_simple_new_obfs;
         plugin->get_server_info = get_server_info;
@@ -112,7 +112,7 @@ obfs_class * new_obfs_class(char *plugin_name)
 
         return plugin;
     } else if (strcmp(plugin_name, "auth_sha1") == 0) {
-        obfs_class * plugin = (obfs_class*)malloc(sizeof(obfs));
+        obfs_class_t * plugin = (obfs_class_t *)malloc(sizeof(obfs_t));
         plugin->init_data = auth_simple_init_data;
         plugin->new_obfs = auth_simple_new_obfs;
         plugin->get_server_info = get_server_info;
@@ -126,7 +126,7 @@ obfs_class * new_obfs_class(char *plugin_name)
 
         return plugin;
     } else if (strcmp(plugin_name, "auth_sha1_v2") == 0) {
-        obfs_class * plugin = (obfs_class*)malloc(sizeof(obfs));
+        obfs_class_t * plugin = (obfs_class_t *)malloc(sizeof(obfs_t));
         plugin->init_data = auth_simple_init_data;
         plugin->new_obfs = auth_simple_new_obfs;
         plugin->get_server_info = get_server_info;
@@ -140,7 +140,7 @@ obfs_class * new_obfs_class(char *plugin_name)
 
         return plugin;
     } else if (strcmp(plugin_name, "auth_sha1_v4") == 0) {
-        obfs_class * plugin = (obfs_class*)malloc(sizeof(obfs));
+        obfs_class_t * plugin = (obfs_class_t *)malloc(sizeof(obfs_t));
         plugin->init_data = auth_simple_init_data;
         plugin->new_obfs = auth_simple_new_obfs;
         plugin->get_server_info = get_server_info;
@@ -154,7 +154,7 @@ obfs_class * new_obfs_class(char *plugin_name)
 
         return plugin;
     } else if (strcmp(plugin_name, "auth_aes128_md5") == 0) {
-        obfs_class * plugin = (obfs_class*)malloc(sizeof(obfs));
+        obfs_class_t * plugin = (obfs_class_t *)malloc(sizeof(obfs_t));
         plugin->init_data = auth_simple_init_data;
         plugin->new_obfs = auth_aes128_md5_new_obfs;
         plugin->get_server_info = get_server_info;
@@ -168,7 +168,7 @@ obfs_class * new_obfs_class(char *plugin_name)
 
         return plugin;
     } else if (strcmp(plugin_name, "auth_aes128_sha1") == 0) {
-        obfs_class * plugin = (obfs_class*)malloc(sizeof(obfs));
+        obfs_class_t * plugin = (obfs_class_t *)malloc(sizeof(obfs_t));
         plugin->init_data = auth_simple_init_data;
         plugin->new_obfs = auth_aes128_sha1_new_obfs;
         plugin->get_server_info = get_server_info;
@@ -186,6 +186,6 @@ obfs_class * new_obfs_class(char *plugin_name)
     return NULL;
 }
 
-void free_obfs_class(obfs_class *plugin) {
+void free_obfs_class(obfs_class_t *plugin) {
     free(plugin);
 }

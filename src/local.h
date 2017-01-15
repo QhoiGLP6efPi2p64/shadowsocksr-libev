@@ -73,10 +73,10 @@ typedef struct server {
     struct cork_dllist_item entries;
 
     // SSR
-    obfs *protocol;
-    obfs *obfs;
-    obfs_class *protocol_plugin;
-    obfs_class *obfs_plugin;
+    obfs_t *protocol;
+    obfs_t *obfs;
+    obfs_class_t *protocol_plugin;
+    obfs_class_t *obfs_plugin;
 } server_t;
 
 typedef struct remote_ctx {

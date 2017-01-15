@@ -61,8 +61,8 @@ typedef struct server_ctx {
     struct ev_loop *loop;
 #endif
     // SSR
-    obfs *protocol;
-    obfs_class *protocol_plugin;
+    obfs_t *protocol;
+    obfs_class_t *protocol_plugin;
     void *protocol_global;
 } server_ctx_t;
 
