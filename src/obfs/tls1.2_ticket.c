@@ -85,7 +85,7 @@ void tls12_ticket_auth_pack_data(char *encryptdata, int datalength, int start, i
     memcpy(out_buffer + outlength + 5, encryptdata + start, len);
 }
 
-int tls12_ticket_auth_client_encode(obfs_t *self, char **pencryptdata, int datalength, size_t* capacity) {
+int tls12_ticket_auth_client_encode(obfs_t *self, char **pencryptdata, int datalength, size_t *capacity) {
     char *encryptdata = *pencryptdata;
     tls12_ticket_auth_local_data *local = (tls12_ticket_auth_local_data*)self->l_data;
     tls12_ticket_auth_global_data *global = (tls12_ticket_auth_global_data*)self->server.g_data;
@@ -266,7 +266,7 @@ int tls12_ticket_auth_client_encode(obfs_t *self, char **pencryptdata, int datal
     return datalength;
 }
 
-int tls12_ticket_auth_client_decode(obfs_t *self, char **pencryptdata, int datalength, size_t* capacity, int *needsendback) {
+int tls12_ticket_auth_client_decode(obfs_t *self, char **pencryptdata, int datalength, size_t *capacity, int *needsendback) {
     char *encryptdata = *pencryptdata;
     tls12_ticket_auth_local_data *local = (tls12_ticket_auth_local_data*)self->l_data;
     tls12_ticket_auth_global_data *global = (tls12_ticket_auth_global_data*)self->server.g_data;
