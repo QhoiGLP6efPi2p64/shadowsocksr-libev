@@ -52,6 +52,7 @@
 #include "tls.h"
 #include "netutils.h"
 #include "utils.h"
+#include "obfsutil.h"
 #include "common.h"
 #include "redir.h"
 
@@ -70,8 +71,6 @@
 #ifndef IP6T_SO_ORIGINAL_DST
 #define IP6T_SO_ORIGINAL_DST 80
 #endif
-
-#include "obfs.c" // I don't want to modify makefile
 
 static void accept_cb(EV_P_ ev_io *w, int revents);
 static void server_recv_cb(EV_P_ ev_io *w, int revents);

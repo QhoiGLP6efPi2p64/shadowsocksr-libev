@@ -1,4 +1,13 @@
+#include <stdlib.h>
+#include <string.h>
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
+#include "encrypt.h"
+#include "obfs.h"
+#include "obfsutil.h"
 #include "tls1.2_ticket.h"
 
 typedef struct tls12_ticket_auth_global_data {

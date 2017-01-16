@@ -1,4 +1,10 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
 
+#include "obfs.h"
+#include "obfsutil.h"
 #include "http_simple.h"
 
 static char* g_useragent[] = {

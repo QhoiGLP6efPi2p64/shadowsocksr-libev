@@ -1,4 +1,15 @@
+#include <stdlib.h>
+#include <string.h>
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
+#include "encrypt.h"
+#include "base64.h"
+#include "crc32.h"
+#include "obfs.h"
+#include "obfsutil.h"
 #include "auth.h"
 
 static int auth_simple_pack_unit_size = 2000;

@@ -1,4 +1,9 @@
+#include <stdlib.h>
+#include <string.h>
 
+#include "obfs.h"
+#include "obfsutil.h"
+#include "crc32.h"
 #include "verify.h"
 
 static int verify_simple_pack_unit_size = 2000;

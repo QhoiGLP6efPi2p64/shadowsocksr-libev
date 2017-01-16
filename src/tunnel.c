@@ -57,6 +57,7 @@
 
 #include "netutils.h"
 #include "utils.h"
+#include "obfsutil.h"
 #include "tunnel.h"
 
 #ifndef EAGAIN
@@ -70,8 +71,6 @@
 #ifndef BUF_SIZE
 #define BUF_SIZE 2048
 #endif
-
-#include "obfs.c" // I don't want to modify makefile
 
 static void accept_cb(EV_P_ ev_io *w, int revents);
 static void server_recv_cb(EV_P_ ev_io *w, int revents);

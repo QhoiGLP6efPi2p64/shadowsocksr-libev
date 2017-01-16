@@ -62,6 +62,7 @@
 
 #include "netutils.h"
 #include "utils.h"
+#include "obfsutil.h"
 #include "socks5.h"
 #include "acl.h"
 #include "http.h"
@@ -100,8 +101,6 @@ uint64_t rx    = 0;
 ev_tstamp last = 0;
 char *prefix;
 #endif
-
-#include "obfs.c" // I don't want to modify makefile
 
 static int acl       = 0;
 static int mode = TCP_ONLY;

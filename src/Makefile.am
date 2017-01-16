@@ -30,6 +30,17 @@ sni_src = http.c \
           tls.c \
           rule.c
 
+obfs_plugins_src = obfs/http_simple.c \
+                   obfs/tls1.2_ticket.c \
+                   obfs/verify.c \
+                   obfs/auth.c
+
+obfs_src = $(obfs_plugins_src) \
+           obfsutil.c \
+           crc32.c \
+           base64.c \
+           obfs.c
+
 ss_local_SOURCES = utils.c \
                    jconf.c \
                    json.c \
@@ -39,7 +50,8 @@ ss_local_SOURCES = utils.c \
                    acl.c \
                    netutils.c \
                    local.c \
-                   $(sni_src)
+                   $(sni_src) \
+                   $(obfs_src)
 
 ss_tunnel_SOURCES = utils.c \
                     jconf.c \
@@ -48,7 +60,8 @@ ss_tunnel_SOURCES = utils.c \
                     udprelay.c \
                     cache.c \
                     netutils.c \
-                    tunnel.c
+                    tunnel.c \
+                    $(obfs_src)
 
 ss_server_SOURCES = utils.c \
                     netutils.c \
@@ -60,7 +73,8 @@ ss_server_SOURCES = utils.c \
                     acl.c \
                     resolv.c \
                     server.c \
-                    $(sni_src)
+                    $(sni_src) \
+                    $(obfs_src)
 
 ss_manager_SOURCES = utils.c \
                      jconf.c \
@@ -102,7 +116,8 @@ ss_redir_SOURCES = utils.c \
                    cache.c \
                    udprelay.c \
                    redir.c \
-                   $(sni_src)
+                   $(sni_src) \
+                   $(obfs_src)
 ss_redir_CFLAGS = $(AM_CFLAGS) -DMODULE_REDIR
 ss_redir_LDADD = $(SS_COMMON_LIBS)
 if USE_SYSTEM_SHARED_LIB

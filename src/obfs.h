@@ -7,6 +7,7 @@
 #ifndef _OBFS_H
 #define _OBFS_H
 
+#include <stddef.h>
 #include <stdint.h>
 #include <unistd.h>
 
